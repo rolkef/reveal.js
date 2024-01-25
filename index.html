@@ -1,40 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/fh.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>Slide 1</section>
+        <section>Slide 2</section>
+      </div>
+    </div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+    <style type="text/css">
+      #header-left {
+        position: absolute;
+        top: 3%;
+        left: 2%;
+        font-size: 0.5em;
+        color: #79b635;
+        border-left: 5px solid #71bf45;
+        padding-left: 30px;
+        line-height: 1;
+        height: 50px;
+      }
+      #header-right {
+        position: absolute;
+        top: 1%;
+        right: 2%;
+      }
+      #footer-left {
+        position: absolute;
+        bottom: 2%;
+        left: 2%;
+        font-size: 0.5em;
+        color: #898989;
+      }
+      #footer-middle {
+        position: absolute;
+        bottom: 2%;
+        left: 45%;
+        font-size: 0.5em;
+        color: #898989;
+      }
+    </style>
+
+    <!-- 2. Create hidden header/footer <div> -->
+    <div id="hidden" style="display: none">
+      <div id="header">
+        <div id="header-left">APPLIED COMPUTER SCIENCES</div>
+        <div id="header-right">
+          <img
+            src="./dist/theme/images/FH/logo_FHJ_100mm_rgb_modfied_green.svg"
+            width="300px"
+            height="auto"
+            alt="FH JOANNEUM Logo"
+          />
+        </div>
+        <div id="footer-left">Date</div>
+        <div id="footer-middle">Name</div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = dd + '.' + mm + '.' + yyyy;
+        document.getElementById('footer-left').innerHTML = today;
+      };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript">
+      // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+      var header = $('#header').html();
+      if (window.location.search.match(/print-pdf/gi)) {
+        Reveal.addEventListener('ready', function (event) {
+          $('.slide-background').append(header);
+        });
+      } else {
+        $('div.reveal').append(header);
+      }
+    </script>
+  </body>
 </html>
